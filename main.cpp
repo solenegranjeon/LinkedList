@@ -44,10 +44,9 @@ int main(int argc, char* argv[]){
 	my_display(nod.get_v());
 
 	List l1;
-	l1.PushBack(&nod);
-	l1.PushBack(&n1);
-	l1.PushBack(&nod);
-	l1.Insert(&n2,1);
+	l1.PushBack(v1);
+	l1.PushBack(v2);
+	l1.Insert(v1,1);
 	
 	return EXIT_SUCCESS;
 	

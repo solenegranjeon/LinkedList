@@ -7,23 +7,26 @@
 #include "Node.h"
 
 //Contructors
-//Default
+//Default points to the nil vector
 Node::Node(){
 	next=nullptr;
+	prev=nullptr;
 	Vector v;
 	ptrv=new Vector(v);
 }
 
-//Copy
+//Copy (not sure it works)
 Node::Node(const Node& model){
 	this->next=model.next;
 	this->ptrv=model.ptrv;
+	this->prev=model.prev;
 }
 
 //Gives a Vector (passage par valeur)
 Node::Node(Vector v){ /** Pour que ce contructeur ne soit appelé que dans list ajouter =0 **/
 	next=nullptr;
 	ptrv=new Vector(v);
+	prev=nullptr;
 }
 	
 //Getters

@@ -16,9 +16,9 @@ class List{
 		~List();
 		
 		//Add and substract an element at the end of the list
-		void PushBack(Node* newNode);
+		void PushBack(Vector newVector);
 		void PopBack();
-		void Insert(Node* newNode,int position);
+		void Insert(Vector newVector,int position);
 		
 };
 

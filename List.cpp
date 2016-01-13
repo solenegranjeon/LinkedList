@@ -21,7 +21,7 @@ List::~List(){
 }
 
 //Add and substract an element at the end of the list
-void List::PushBack(Node* newNode){
+void List::PushBack(Vector newVector){
 	Node *temporary;
 	temporary= new Node();
 	temporary=head_;
@@ -29,6 +29,8 @@ void List::PushBack(Node* newNode){
 	while(temporary!=nullptr){
 		temporary=(*temporary).get_next();
 	}
+	Node *newNode;
+	newNode= new Node(newVector);
 	temporary=newNode;
 	nb_elts=nb_elts+1;
 }
@@ -50,7 +52,7 @@ void List::PopBack(){
 	nb_elts=nb_elts-1;
 }
 
-void List::Insert(Node* newNode,int position){
+void List::Insert(Vector newVector,int position){
 	int pos=1;
 	Node *actuel;
 	actuel= new Node();
@@ -58,6 +60,8 @@ void List::Insert(Node* newNode,int position){
 	Node *prev;
 	prev= new Node();
 	if(pos>nb_elts){
+		Node *newNode;
+		newNode= new Node(newVector);
 		//On parcourt la liste jusqu'à atteindre l'élement à la position p
 		while(pos=!position){
 			pos=pos+1;
