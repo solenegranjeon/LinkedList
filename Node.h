@@ -5,6 +5,7 @@ class Node{
 
 	protected:
 		Node* next;
+		Node* prev;
 		Vector* ptrv;
 		
 	public:

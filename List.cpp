@@ -47,8 +47,6 @@ void List::PopBack(){
 		 * est-ce que actuel=actuel->get_next() marche aussi?**/
 	}
 	(*prev).set_next(nullptr);
-	delete actuel;
-	delete prev;
 	nb_elts=nb_elts-1;
 }
 
