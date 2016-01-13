@@ -57,11 +57,21 @@ void List::Insert(Node* newNode,int position){
 	Node *actuel;
 	actuel= new Node();
 	actuel=head_;
+	Node *prev;
+	prev= new Node();
 	if(pos>nb_elts){
 		//On parcourt la liste jusqu'à atteindre l'élement à la position p
 		while(pos=!position){
 			pos=pos+1;
+			prev=actuel;
 			actuel=(*actuel).get_next();
 		}
+		/**When we end the while:
+ * prev is the address of the element just before the position asked
+ * actuel is the address of the element at the position asked
+ * **/
+		(*newNode).set_next(actuel);
+		(*prev).set_next(newNode);
 	}
+
 }
