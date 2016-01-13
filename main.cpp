@@ -47,8 +47,7 @@ int main(int argc, char* argv[]){
 	l1.PushBack(&nod);
 	l1.PushBack(&n1);
 	l1.PushBack(&nod);
-	l1.PopBack();
-	l1.PopBack();
+	l1.Insert(&n2,1);
 	
 	return EXIT_SUCCESS;
 	

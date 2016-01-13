@@ -27,7 +27,7 @@ void List::PushBack(Node* newNode){
 	temporary=head_;
 //On parcourt la liste jusqu'à atteindre le dernier element
 	while(temporary!=nullptr){
-		temporary=temporary->get_next();
+		temporary=(*temporary).get_next();
 	}
 	temporary=newNode;
 	nb_elts=nb_elts+1;
@@ -42,9 +42,11 @@ void List::PopBack(){
 //On parcourt la liste jusqu'à atteindre l'avant dernier element
 	while(actuel!=nullptr){
 		prev=actuel;
-		actuel=actuel->get_next();
+		actuel=(*actuel).get_next(); /**Parenthèses obligatoires pour *actuel**/
+		/**QUESTIONS: 
+		 * est-ce que actuel=actuel->get_next() marche aussi?**/
 	}
-	prev->set_next(nullptr);
+	(*prev).set_next(nullptr);
 	delete actuel;
 	delete prev;
 	nb_elts=nb_elts-1;
@@ -59,7 +61,7 @@ void List::Insert(Node* newNode,int position){
 		//On parcourt la liste jusqu'à atteindre l'élement à la position p
 		while(pos=!position){
 			pos=pos+1;
-			actuel=actuel->get_next();
+			actuel=(*actuel).get_next();
 		}
 	}
 }
