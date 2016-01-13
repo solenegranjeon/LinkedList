@@ -1,5 +1,3 @@
-//http://www.codeproject.com/Articles/24684/How-to-create-Linked-list-using-C-C
-
 #include "Vector.h"
 #include "Node.h"
 #include "List.h"
@@ -53,4 +51,15 @@ void List::PopBack(){
 }
 
 void List::Insert(Node* newNode,int position){
+	int pos=1;
+	Node *actuel;
+	actuel= new Node();
+	actuel=head_;
+	if(pos>nb_elts){
+		//On parcourt la liste jusqu'à atteindre l'élement à la position p
+		while(pos=!position){
+			pos=pos+1;
+			actuel=actuel->get_next();
+		}
+	}
 }
