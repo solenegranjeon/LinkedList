@@ -1,7 +1,7 @@
 #ifndef LIST_H
 #define LIST_H
 
-class List{
+class List: public Node{
 	
 	protected:
 		Node* head_;
