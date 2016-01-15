@@ -20,9 +20,11 @@ class Node{
 		Vector get_v();
 		//Gives the pointer to the next Node (next)
 		Node* get_next();
+		Node* get_prev();
 		
 		//Setters
 		void set_next(Node* next_pointer);
+		void set_prev(Node* prev_pointer);
 		
 		//Destructor
 		~Node();

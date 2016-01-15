@@ -1,6 +1,12 @@
 #include "Vector.h"
 #include "Node.h"
 #include "List.h"
+#include <iostream>
+# include <stdio.h>
+# include <string.h>
+
+/**QUESTION: 
+ * est-ce que actuel=actuel->get_next() marche aussi? OUI!**/
 
 //Contructors
 //Default (empty list)
@@ -27,58 +33,108 @@ void List::PushBack(Vector newVector){
 	Node* temporary; //create a temporary node pointer
 	temporary= new Node();
 	temporary=head_;
-//On parcourt la liste jusqu'à atteindre le dernier element
-	while(temporary!=nullptr){
-		temporary=(*temporary).get_next();
-	}
 	Node *newNode; //Create a new Node pointing to the newVector
 	newNode= new Node(newVector);
-	temporary=newNode; //Make the last element point to the new Node
+	if(temporary!=nullptr){
+//On parcourt la liste jusqu'à pointer le dernier element
+		while(temporary->get_next()!=nullptr){
+			temporary=temporary->get_next();
+		}
+		//Make the last element point to the new Node
+		temporary->set_next(newNode);
+		//Make the new element point to the ex last one (prev)
+		(*newNode).set_prev(temporary);
+	}
+	else{
+		head_=newNode;
+	}
 	nb_elts=nb_elts+1;
-	delete temporary; //Delete the temporary node pointer
 }
+
 /**POP BACK**/
 void List::PopBack(){
-	Node *actuel;
-	actuel= new Node();
-	actuel=head_;
-	Node *prev;
-	prev= new Node();
-//On parcourt la liste jusqu'à ce qu'actuel ne pointe sur aucun Noeud
-	while(actuel!=nullptr){
-		prev=actuel;
-		actuel=(*actuel).get_next(); /**Parenthèses obligatoires pour *actuel**/
-		/**QUESTION: 
-		 * est-ce que actuel=actuel->get_next() marche aussi?**/
+	if(nb_elts==0){
+		return;
 	}
-	(*prev).set_next(nullptr); //On fait pointer l'avant dernier noeud sur rien
-	nb_elts=nb_elts-1;
-	delete actuel;
-	delete prev;
+	if(nb_elts==1){
+		delete head_;
+		head_=nullptr;
+		nb_elts=0;
+	}
+	if(nb_elts>1){
+		Node *actuel;
+		actuel= new Node();
+		actuel=head_;
+//On parcourt la liste jusqu'à ce qu'actuel pointe sur le dernier Noeud
+		while(actuel->get_next()!=nullptr){
+			actuel=actuel->get_next();
+		}
+		actuel->set_prev(nullptr);
+		delete actuel;
+		nb_elts=nb_elts-1;
+	}
 }
 
+/**INSERT 
+ * if position is 0 insert at head
+ * if position is smaller than the number of elements insert it
+ * else nothing happens**/
+ 
 void List::Insert(Vector newVector,int position){
-	int pos=1;
-	Node *actuel;
-	actuel= new Node();
-	actuel=head_;
-	Node *prev;
-	prev= new Node();
-	if(pos>nb_elts){ //Make sure the position given exists
+	if(position==0){
 		Node *newNode; //Node to insert
-		newNode= new Node(newVector);
-		//On parcourt la liste jusqu'à atteindre l'élement à la position p
-		while(pos=!position){
-			pos=pos+1;
-			prev=actuel;
-			actuel=(*actuel).get_next();
-		}
-		/**When we end the while:
- * prev is the address of the element just before the position asked
- * actuel is the address of the element at the position asked
- * **/
-		(*newNode).set_next(actuel);
-		(*prev).set_next(newNode);
+		newNode=new Node(newVector);
+		newNode->set_next(head_);
+		head_=newNode;
+		nb_elts=nb_elts+1;
 	}
+	else{
+		if(position>nb_elts-1){
+			return;
+		}
+		else{
+			int pos=0;
+			Node *actuel;
+			actuel= new Node();
+			actuel=head_;
+			Node *newNode; //Node to insert
+			newNode= new Node(newVector);
+			//On parcourt la liste jusqu'à atteindre l'élement à la position p
+			while(pos<position){
+				pos=pos+1;
+				actuel=actuel->get_next();
+			}
+/**When we end the while:
+actuel is the address of the element at the position asked
+*/
+			newNode->set_next(actuel);
+			newNode->set_prev(actuel->get_prev());
+			actuel->set_prev(newNode);
+			actuel=newNode;
+			nb_elts=nb_elts+1;
+			}
+	}
+}
 
+//METHODS TO TEST IF THE OTHER WORK
+Node* List::get_head(){
+	return head_;
+}
+
+void List::Display(){
+	Node* temporary; //create a temporary node pointer
+	temporary= new Node();
+	temporary=head_;
+	int pos=0;
+	
+	while(pos<nb_elts-1){
+		//~ printf("The adress of the Node %d is %p",i,temporary);
+		std::cout<< temporary << std::endl;
+		temporary=temporary->get_next();
+		pos=pos+1;
+	}
+}
+
+int List::get_nelem(){
+	return nb_elts;
 }

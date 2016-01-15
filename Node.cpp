@@ -38,11 +38,18 @@ Node* Node::get_next(){
 	return next;
 }
 
+Node* Node::get_prev(){
+	return prev;
+}
+
 //Setter
 void Node::set_next(Node* next_pointer){
 	next=next_pointer;
 }
 
+void Node::set_prev(Node* prev_pointer){
+	prev=prev_pointer;
+}
 
 //Destructor
 Node::~Node(){

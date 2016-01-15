@@ -27,26 +27,33 @@ int main(int argc, char* argv[]){
 	printf("v2: ");
 	my_display(v2);
 
-	Node n1=Node(v2);
-	printf("Vector of Node n1 (contains v2): ");
-	my_display(n1.get_v());
-	printf("n1 pointe vers %p \n",n1.get_next());
-	
-	Node n2=Node(v1);
-	n2.set_next(&n1);
-	printf("n2 pointe vers %p \n",n2.get_next());
-	
-	printf("Vector of Node n2 (contains v1): ");
-	my_display(n2.get_v());
-	
-	Node nod;
-	printf("Vector of Node nod: ");
-	my_display(nod.get_v());
+	//~ Node n1=Node(v2);
+	//~ printf("Vector of Node n1 (contains v2): ");
+	//~ my_display(n1.get_v());
+	//~ printf("n1 pointe vers %p \n",n1.get_next());
+	//~ 
+	//~ Node n2=Node(v1);
+	//~ n2.set_next(&n1);
+	//~ printf("n2 pointe vers %p \n",n2.get_next());
+	//~ 
+	//~ printf("Vector of Node n2 (contains v1): ");
+	//~ my_display(n2.get_v());
+	//~ 
+	//~ Node nod;
+	//~ printf("Vector of Node nod: ");
+	//~ my_display(nod.get_v());
 
 	List l1;
+	l1.Insert(v1,0);
 	l1.PushBack(v1);
 	l1.PushBack(v2);
 	l1.Insert(v1,1);
+	l1.Insert(v1,5);
+	
+	l1.Display();
+
+	printf("%p\n",l1.get_head());
+	printf("%d\n",l1.get_nelem());
 	
 	return EXIT_SUCCESS;
 	

@@ -20,6 +20,11 @@ class List: public Node{
 		void PopBack();
 		void Insert(Vector newVector,int position);
 		
+		//Getter to test if it works
+		Node* get_head();
+		void Display();
+		int get_nelem();
+		
 };
 
 #endif
