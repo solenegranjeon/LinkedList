@@ -45,16 +45,18 @@ int main(int argc, char* argv[]){
 
 	List l1;
 	l1.Insert(v1,0);
+	l1.Insert(v1,0);
 	l1.PushBack(v1);
 	l1.PushBack(v2);
-	l1.Insert(v1,1);
+	l1.PushBack(v1);
+	//~ l1.PopBack();
+	l1.Insert(v1,2);
 	l1.Insert(v1,5);
-	
-	l1.Display();
 
-	printf("%p\n",l1.get_head());
-	printf("%d\n",l1.get_nelem());
 	
+	printf("La liste contient %d élements. Leurs adresses sont:\n",l1.get_nelem());
+	l1.Display();
+		
 	return EXIT_SUCCESS;
 	
 }

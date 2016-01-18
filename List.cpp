@@ -5,9 +5,6 @@
 # include <stdio.h>
 # include <string.h>
 
-/**QUESTION: 
- * est-ce que actuel=actuel->get_next() marche aussi? OUI!**/
-
 //Contructors
 //Default (empty list)
 List::List(){
@@ -69,7 +66,8 @@ void List::PopBack(){
 		while(actuel->get_next()!=nullptr){
 			actuel=actuel->get_next();
 		}
-		actuel->set_prev(nullptr);
+		//On remonte à l'avant dernier et on le fait pointer sur null
+		actuel->get_prev()->set_next(nullptr);
 		delete actuel;
 		nb_elts=nb_elts-1;
 	}
@@ -82,11 +80,20 @@ void List::PopBack(){
  
 void List::Insert(Vector newVector,int position){
 	if(position==0){
-		Node *newNode; //Node to insert
-		newNode=new Node(newVector);
-		newNode->set_next(head_);
-		head_=newNode;
-		nb_elts=nb_elts+1;
+		if(nb_elts==0){
+			Node *newNode; //Node to insert
+			newNode=new Node(newVector);
+			this->head_=newNode;
+			nb_elts=nb_elts+1;
+		}
+		else{
+			Node *newNode; //Node to insert
+			newNode=new Node(newVector);
+			newNode->set_next(head_);
+			//~ head_->get_next()->set_prev(newNode);
+			head_=newNode;
+			nb_elts=nb_elts+1;
+		}
 	}
 	else{
 		if(position>nb_elts-1){
@@ -108,9 +115,9 @@ void List::Insert(Vector newVector,int position){
 actuel is the address of the element at the position asked
 */
 			newNode->set_next(actuel);
-			newNode->set_prev(actuel->get_prev());
-			actuel->set_prev(newNode);
-			actuel=newNode;
+			//~ newNode->set_prev(actuel->get_prev());
+			//~ actuel->set_prev(newNode);
+			actuel->get_prev()->set_next(newNode);
 			nb_elts=nb_elts+1;
 			}
 	}
@@ -127,7 +134,7 @@ void List::Display(){
 	temporary=head_;
 	int pos=0;
 	
-	while(pos<nb_elts-1){
+	while(pos<nb_elts){
 		//~ printf("The adress of the Node %d is %p",i,temporary);
 		std::cout<< temporary << std::endl;
 		temporary=temporary->get_next();
