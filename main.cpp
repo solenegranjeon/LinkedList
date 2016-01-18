@@ -51,6 +51,7 @@ int main(int argc, char* argv[]){
 	l1.Insert(v1,2);
 	l1.Insert(v1,4);
 	l1.Insert(v1,4);
+	l1.PopBack();
 
 	
 	printf("La liste contient %d élements. Leurs adresses sont:\n",l1.get_nelem());

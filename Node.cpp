@@ -23,7 +23,7 @@ Node::Node(const Node& model){
 }
 
 //Gives a Vector (passage par valeur)
-Node::Node(Vector v){ /** Pour que ce contructeur ne soit appelé que dans list ajouter =0 **/
+Node::Node(Vector v){
 	next=nullptr;
 	ptrv=new Vector(v);
 	prev=nullptr;
