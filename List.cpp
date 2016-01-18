@@ -90,7 +90,7 @@ void List::Insert(Vector newVector,int position){
 			Node *newNode; //Node to insert
 			newNode=new Node(newVector);
 			newNode->set_next(head_);
-			//~ head_->get_next()->set_prev(newNode);
+			newNode->get_next()->set_prev(newNode);
 			head_=newNode;
 			nb_elts=nb_elts+1;
 		}
@@ -115,9 +115,9 @@ void List::Insert(Vector newVector,int position){
 actuel is the address of the element at the position asked
 */
 			newNode->set_next(actuel);
-			//~ newNode->set_prev(actuel->get_prev());
-			//~ actuel->set_prev(newNode);
+			newNode->set_prev(actuel->get_prev());
 			actuel->get_prev()->set_next(newNode);
+			actuel->set_prev(newNode);
 			nb_elts=nb_elts+1;
 			}
 	}
