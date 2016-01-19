@@ -1,33 +1,30 @@
-# include <stdio.h>
-#include <math.h>
-#include <cassert>
+
+
+#include <stdio.h>
 #include <iostream>
-#include <cstdlib>
+#include <math.h>
 #include "Vector.h"
 
-//Contructors
-//Default
 Vector::Vector(){
 	x=0;
 	y=0;
 	norm=0;
 }
 
-//Copy
 Vector::Vector(const Vector& model){
-	this->x=model.x;
-	this->y=model.y;
-	this->norm=sqrt(x*x+y*y);
+	x=model.x;
+	y=model.y;
+	norm=pow(pow(x,2)+pow(y,2),0.5);
 }
 
-//Gives the coordinates
-Vector::Vector(float x, float y){
-	this->x=x;
-	this->y=y;
-	norm=sqrt(x*x+y*y);
+Vector::Vector(float x,float y){
+	this->x = x;
+	this->y = y;
+	norm=pow(pow(x,2)+pow(y,2),0.5);
 }
 
-//Getters
+
+
 float Vector::get_x(){
 	return x;
 }
@@ -39,16 +36,17 @@ float Vector::get_y(){
 float Vector::get_norm(){
 	return norm;
 }
-
-//Methods to modify the vector
-//Addition
-void Vector::Add(Vector v2){
-	this->x=v2.x+this->x;
-	this->y=v2.y+this->y;
-	this->norm=sqrt(this->x*this->x+this->y*this->y);
+	
+void Vector::Add(Vector v){
+	x=v.x+x;
+	y=v.y+y;
+	norm=pow(pow(x,2)+pow(y,2),0.5);
 }
 
-void Vector::Multiply(float a){
-	this->x=a*this->x;
-	this->y=a*this->y;
+void Vector::Multiply(float k){
+	x=x*k;
+	y=y*k;
+	norm=norm*k;
 }
+
+

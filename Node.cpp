@@ -1,57 +1,49 @@
-# include <stdio.h>
-#include <math.h>
-#include <cassert>
+
+#include <stdio.h>
 #include <iostream>
-#include <cstdlib>
-#include "Vector.h"
+#include <math.h>
 #include "Node.h"
 
-//Contructors
-//Default points to the nil vector
+
+
+
 Node::Node(){
-	next=nullptr;
-	prev=nullptr;
-	Vector v;
-	ptrv=new Vector(v);
+	Vector v2;
+	addr=new Vector(v2);
+	next =nullptr;
+	
 }
 
-//Copy (not sure it works)
-Node::Node(const Node& model){
-	this->next=model.next;
-	this->ptrv=model.ptrv;
-	this->prev=model.prev;
-}
+/**
+ * On doit réaliser une copie avec un new pour éviter de perdre 
+ * les données, il faudra par contre bien faire un delete pour
+ * fermer le new ouvert.
+ * */
 
-//Gives a Vector (passage par valeur)
-Node::Node(Vector v){
+Node::Node(Vector vec){
+	
+	addr=new Vector(vec);
 	next=nullptr;
-	ptrv=new Vector(v);
-	prev=nullptr;
 }
 	
-//Getters
-Vector Node::get_v(){
-	return *ptrv;
+Node::Node(const Node& model){
+	addr=model.addr;
+	next=model.next;
+}
+
+void Node::set_next(Node* n){
+	next=n;
 }
 
 Node* Node::get_next(){
 	return next;
 }
 
-Node* Node::get_prev(){
-	return prev;
-}
 
-//Setter
-void Node::set_next(Node* next_pointer){
-	next=next_pointer;
+Vector* Node::get_address(){
+	return addr;
 }
-
-void Node::set_prev(Node* prev_pointer){
-	prev=prev_pointer;
-}
-
-//Destructor
 Node::~Node(){
-	delete ptrv;
+	delete addr;
 }
+

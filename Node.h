@@ -1,33 +1,17 @@
-#ifndef NODE_H
-#define NODE_H
+#include "Vector.h"
 
-class Node{
-
-	protected:
-		Node* next;
-		Node* prev;
-		Vector* ptrv;
-		
-	public:
-	
-		//Constructors
-		Node();
-		Node(const Node& model);
-		Node(Vector v);
-
-		//Getters
-		//Gives the element pointed by ptrv
-		Vector get_v();
-		//Gives the pointer to the next Node (next)
+class Node {
+	public :
+		void set_next(Node* n);
 		Node* get_next();
-		Node* get_prev();
-		
-		//Setters
-		void set_next(Node* next_pointer);
-		void set_prev(Node* prev_pointer);
-		
-		//Destructor
+		Vector* get_address();
+		Node();
+		Node(Vector temp);
+		Node(const Node& model);
 		~Node();
+		
+	protected :
+		Vector* addr;
+		Node* next;
+	private :
 };
-
-#endif
