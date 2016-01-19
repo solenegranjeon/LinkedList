@@ -1,49 +1,57 @@
-
-#include <stdio.h>
-#include <iostream>
+# include <stdio.h>
 #include <math.h>
+#include <cassert>
+#include <iostream>
+#include <cstdlib>
+#include "Vector.h"
 #include "Node.h"
 
-
-
-
-Node::Node(){
-	Vector v2;
-	addr=new Vector(v2);
-	next =nullptr;
-	
-}
-
-/**
- * On doit réaliser une copie avec un new pour éviter de perdre 
- * les données, il faudra par contre bien faire un delete pour
- * fermer le new ouvert.
- * */
-
-Node::Node(Vector vec){
-	
-	addr=new Vector(vec);
+//Contructors
+//Default points to the nil vector
+Node::Node(){ // Quelle utilité ?
 	next=nullptr;
-}
-	
-Node::Node(const Node& model){
-	addr=model.addr;
-	next=model.next;
+	prev=nullptr;
+	Vector v;
+	ptrv=new Vector(v);
 }
 
-void Node::set_next(Node* n){
-	next=n;
+//Copy (not sure it works)
+Node::Node(const Node& model){ // Quelle utilité ? + Listes interconnectées !
+	this->next=model.next;
+	this->ptrv=model.ptrv;
+	this->prev=model.prev;
+}
+
+//Gives a Vector (passage par valeur)
+Node::Node(Vector v){
+	next=nullptr;
+	ptrv=new Vector(v);
+	prev=nullptr;
+}
+	
+//Getters
+Vector Node::get_v(){ // Peut aussi renvoyer un const Vector&
+	return *ptrv;
 }
 
 Node* Node::get_next(){
 	return next;
 }
 
-
-Vector* Node::get_address(){
-	return addr;
+Node* Node::get_prev(){
+	return prev;
 }
+
+//Setter
+void Node::set_next(Node* next_pointer){
+	next=next_pointer;
+}
+
+void Node::set_prev(Node* prev_pointer){
+	prev=prev_pointer;
+}
+
+//Destructor
 Node::~Node(){
-	delete addr;
+	delete ptrv;
 }
-

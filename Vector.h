@@ -1,30 +1,31 @@
+#ifndef VECTOR_H
+#define VECTOR_H
 
-
-
-
-
-class Vector {
-  public :
-  //~Getters
-    float get_x();
-    float get_y();
-    float get_norm();
-    
-  //~Methods
-    void Add(Vector v);
-    void Multiply(float param);
-    
-  //~Constructors & destructor
-    Vector();
-    Vector(float x, float y);
-    Vector(const Vector& model);
-    ~Vector()=default;  
-    
-  protected :
-  //~Params 
+class Vector{
+	
+  protected:
     float x;
     float y;
     float norm;
     
-  private :
+	public:
+		//Constructors
+		Vector();
+		Vector(const Vector& model);
+		Vector(float x, float y);
+		
+		//Getters
+		float get_x();
+		float get_y();
+		float get_norm();
+		
+		//Methods to modify the vector
+		void Add(Vector v2);
+		void Multiply(float a);
+		
+		//Destructor
+		~Vector()=default;
+		
 };
+
+#endif
